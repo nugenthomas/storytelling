@@ -1,0 +1,125 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+	<script language="javascript" type="text/javascript" src="../helpers/p5.js"></script>
+  <style> body {padding: 0; margin: 0;} </style>
+  <script>
+
+  //Keep track of our state with the weather variable
+  var weather = "sunshine";
+
+  //since our cloud is animated, we'll need a variable to keep track of its position
+  var cloudPosition =0;
+
+
+  function setup(){
+
+    createCanvas(windowWidth,windowHeight);
+			
+  }
+
+
+  function draw(){
+    //check what state our weather is in and draw the appropriate thing by calling
+    //the custom functions below
+  	if (weather=="sunshine"){
+  		drawSunshine();
+  	} else if (weather == "rain"){
+ 			drawRain();
+  	}
+
+  }
+
+  // We can organize our code by creating
+  // functions that draw a specific thing
+  // This function draws our sunshine state
+  function drawSunshine(){
+
+  		//sky
+  		fill("lightblue");
+  		rect(0,0,windowWidth,windowHeight*.75);
+
+  		//ground
+  		fill("green");
+  		rect(0,windowHeight*.75,windowWidth,windowHeight*.25);
+
+  		//sun
+  		fill("yellow");
+  		ellipse(150,150,100,100);
+
+  		//cloud
+  		fill("white");
+  		noStroke();
+  		ellipse(cloudPosition, 80, 50,50);
+  		ellipse(cloudPosition+20, 70, 50,50);
+  		ellipse(cloudPosition+40, 80, 50,50);
+  		ellipse(cloudPosition+20, 90, 50,50);
+
+      //if cloud reaches end of screen, loop back to the beggining
+  		if(cloudPosition > windowWidth){
+  			cloudPosition=0;
+  		}
+  		else{
+  				cloudPosition++;
+  		}
+
+  }
+
+  // We can organize our code by creating
+  // functions that draw a specific thing
+  // This function draws our rain state
+  function drawRain(){
+
+  		//sky
+  		fill("darkblue");
+  		rect(0,0,windowWidth,windowHeight*.75);
+
+  		//ground
+  		fill("forestgreen");
+  		rect(0,windowHeight*.75,windowWidth,windowHeight*.25);
+
+  		//sun
+  		fill("yellow");
+  		ellipse(150,150,100,100);
+
+
+  		//rain
+  		for(var x = 0;x<50;x+=10){
+  			stroke("white");
+  			line(cloudPosition+x,100,cloudPosition+x,windowHeight);
+  		}
+
+  		//cloud
+  		fill("grey");
+  		noStroke();
+  		ellipse(cloudPosition, 80, 50,50);
+  		ellipse(cloudPosition+20, 70, 50,50);
+  		ellipse(cloudPosition+40, 80, 50,50);
+  		ellipse(cloudPosition+20, 90, 50,50);
+
+      //if cloud reaches end of screen, loop back to the beggining
+  		if(cloudPosition > windowWidth){
+  			cloudPosition=0;
+  		}
+  		else{
+  				cloudPosition++;
+  		}
+
+  		
+
+  }
+
+  function mousePressed() {
+  		if(weather ==="sunshine"){
+  			weather = "rain";
+
+  		} else if (weather == "rain"){
+  			weather = "sunshine";
+  		}
+  	}
+	</script>
+</head>
+
+<body>
+</body>
+</html>

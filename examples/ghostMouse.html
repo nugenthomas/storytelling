@@ -1,0 +1,85 @@
+
+<html>
+<head>
+  <meta charset="UTF-8">
+	<script language="javascript" type="text/javascript" src="../helpers/p5.js"></script>
+	<script language="javascript" type="text/javascript" src="../helpers/p5.dom.js"></script>
+  <style> body {padding: 0; margin: 0;} </style>
+  <script>
+
+  //this will be used to keep track of our state
+	var ghostX = 0;
+	var ghostY = 50;
+	var speed = 5;
+	var bg ="white";
+
+	var ghost; 
+
+	function preload(){
+
+		ghost = loadImage("../assets/ghost.png");
+
+	}
+	function setup() {
+		createCanvas(windowWidth, windowHeight);
+		imageMode(CENTER);
+	}
+
+	function draw() {
+		background(bg);	
+
+		//if the ghost is to the left of our mouse
+		if (ghostX < mouseX){
+			ghostX +=speed;
+		}
+
+		//if the ghost is to the right of our mouse
+		if (ghostX > mouseX){
+			ghostX-=speed;
+		}
+
+		//if the ghost is above our mouse
+		if (ghostY < mouseY){
+			ghostY+=speed;
+		}
+
+		//if the ghost is below our mouse
+		if (ghostY > mouseY){
+			ghostY-=speed;
+		}
+
+		//draw the ghost using the position variables
+		image(ghost, ghostX, ghostY);
+
+		//add some text explaining how to use the keyboard
+		fill("red");
+		text("Use your mouse to move and SHIFT to change from day to night",20,20);
+	}
+
+	//Keys you can detect with p5 are:
+	//BACKSPACE, DELETE, ENTER, RETURN, TAB, 
+	//ESCAPE, SHIFT, CONTROL, OPTION, ALT, 
+	//UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW. 
+	function keyPressed() {
+
+		//change the background color when the shift key is pressed
+		//and save that state to the bg variable, which we will used 
+		//to fill in the background color in the draw() function
+	  if(keyCode === SHIFT){
+	  	//we have to check what state its already in first
+	  	//before whe know what state to switch it to
+	  	if(bg == "black"){
+	  		bg = "white";
+	  	} else if (bg=="white"){
+	  		bg = "black";
+	  	}
+	  }
+
+	}
+
+	</script>
+</head>
+
+<body>
+</body>
+</html>

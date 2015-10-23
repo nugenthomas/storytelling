@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="helpers/p5.js"></script>
+  <style> 
+  body {margin: 20px;font-family: Arial;}
+  #wrapper{max-width:800px;margin:0 auto;} 
+  code{font-weight: bold;} </style>
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+</head>
+<body>
+  <div id="wrapper">
+
+    <h2>Input from the keyboard</h2>
+    <p>p5 has the ability to detect input from the keyboard. There are several ways to do this.</p>
+
+    <p><strong><a href="http://p5js.org/reference/#/p5/keyIsPressed">keyIsPressed</a></strong><br />
+    This is a boolean(true/false) value that will be true if any key is pressed</p>
+
+    <p><strong><a href="http://p5js.org/reference/#/p5/key">key</a></strong><br />
+      This variable represents the last key pressed. If a user types "a" then key will equal "a".</p>
+    
+    <p><strong><a href="http://p5js.org/reference/#/p5/keyCode">keyCode</a></strong><br />
+      keyCode is used to detect special keys such as BACKSPACE, DELETE, ENTER, RETURN, TAB, ESCAPE, SHIFT, CONTROL, OPTION, ALT, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW
+    </p>
+
+    <p><strong><a href="http://p5js.org/reference/#/p5/keyPressed">keyPressed()</a></strong><br />
+      keyPressed is a function that is called every time a key is pressed
+    </p>
+
+
+    <p><strong><a href="http://p5js.org/reference/#/p5/keyReleased">keyReleased()</a></strong><br />
+      keyPressed is a function that is called every time a key is resleased
+    </p>
+
+    <p><strong><a href="http://p5js.org/reference/#/p5/keyTyped">keyTyped()</a></strong><br />
+      This function is called every time a key is pressed. Note that holding down a key will cause this function to be called multiple times.
+    </p>
+
+    <p><strong><a href="http://p5js.org/reference/#/p5/keyIsDown">keyIsDown()</a></strong><br />
+      This is a function that checkes if a specific key is pressed down. It's especially helpful to use in if statements.
+
+    </p>
+
+
+
+  <h2>Examples</h2>
+
+ <h3><a href="examples/states.html">State of the weather</a></h3>
+ 
+ <p>This example uses a variable to keep track of the state of a drawing.</p>
+
+<hr />
+
+    <h3><a href="examples/icecream.html">Interactive Ice Cream</a></h3>
+    <p>Press up to add a scoop, down to remove one, and click to change flavors.</p>
+
+<hr />
+    <h3><a href="examples/direction.html">Ghosts with keyboard</a></h3>
+    <p>This example shows you how to take keboard inputs to change the state of your animation.</p>
+
+<hr />
+    <h3><a href="examples/ghostMouse.html">Ghost with mouse</a></h3>
+    <p>This example shows you how use the mouse and the keyboard to to create an interactive drawing.</p>
+<hr />
+
+  <h2>Assignment</h2>
+  <p>Using the template in the assigments folder, complete the following assignments. Spend some time reviewing the examples before you get started.</p>
+ 
+  <h3><a href="assignment.html">Create an interactive story</a></h3>
+  <p>Your story will be told using states to move from one part to the next. Each part of your story should be interactive.</p>
+
+<p>For example, if I was telling the fairy tale of <a href="https://en.wikipedia.org/wiki/The_Three_Little_Pigs">the three little pigs</a> I could have the user make the wolf huff and puff by pressing the enter key repeatedly till the house falls down.</p>
+
+  <p>Think about how you're going to have the user switch between states. Someone should be able to figure out how to do so without looking at your code. Feel free to use images, shapes, or both. This should not be an abstract drawing; everything should be identifiable. Your story can be based on real life, made up, or adapted from a known source. Keep it fairly simple.</p>
+
+<p>If each state uses the same backdrop/scenery, think about how that background can be put into a function to be reused for each state.</p>
+
+<p>Try to use as few words as possible to tell your story. Let the images, animations, and interactions speak for themselves. Take a look at <a href="http://p5js.org/reference/#group-Typography">the p5 text options</a> on their reference page for any text you do use.
+
+
+  
+
+
+  <p><strong>Your program should:</strong></p>
+  <ul>
+    <li>Have at least 3 states, or parts to the story. (6 points)</li>
+    <li>Each state should respond to some sort of user input (3 points)</li>
+    <li>At least one input must be from the keyboard, using the method in the examples (1 point)</li>
+    <li>At least one input must be from the mouse (1 point)</li>
+  </ul>
+<p>You will also be graded on:
+<ul>
+  <li>Concept, composition and creativity (4 points)</li>
+  <li>How intuitive the controls are (1 point)</li>
+  <li>How well the code is written syntactically, and if there are no errors (3 points)</li>
+  <li>How cleanly the code is written (1 point). This means organizing your code in a logical sequence, commenting, and indenting.</li>
+</ul>
+
+
+</div>
+</body>
+
+</html>
