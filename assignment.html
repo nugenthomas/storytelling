@@ -17,23 +17,171 @@
 	// function preload(){
 
 	// }
+	var direction = "right";
+	var einsteinState = "sober";
+	var emc2Position = 0;
+	var atomPosition = 0;
+	var tabX = 0;
+	var tabY = 50;
+	var speed = 5;
+	var moveX = 0;
+	var moveY = 50;
 
+
+	function preload(){
+		einstein = loadImage ("../assets/einstein.jpg");
+		tab = loadImage ("../assets/tab.jpg");
+		emc2 = loadImage ("../assets/emc2.png");
+		atom = loadImage ("../assets/brown.png");
+		pattern = loadImage ("../assets/wave.jpg");
+		explosion = loadImage ("../assets/explosion.png");
+		bomb = loadImage ("../assets/bomb.png");
+
+	}
 
 	//Set up your canvas
 	function setup() {
 		createCanvas(windowWidth, windowHeight);
+		noCursor();
 
 	}
-
 
 	//Draw your story
 	function draw() {
 
+		image(einstein,0,0, einstein.width/1.1, einstein.height/1.1);
+
+		//if the tab is to the left of our mouse
+		if (tabX < mouseX){
+			tabX +=speed;
+		}
+
+		//if the tab is to the right of our mouse
+		if (tabX > mouseX){
+			tabX-=speed;
+		}
+
+		//if the tab is above our mouse
+		if (tabY < mouseY){
+			tabY+=speed;
+		}
+
+		//if the tab is below our mouse
+		if (tabY > mouseY){
+			tabY-=speed;
+		}
+
+		//draw the tab using the position variables
+		image(tab, tabX, tabY, tab.width/9, tab.height/9);
+		imageMode(CENTER);
+
+		if (einsteinState == "sober"){
+			drawSobereinstein();
+		} else if (einsteinState == "tripping"){
+			drawTrippingeinstein();
+		} else if (einsteinState =="explosion"){
+			drawExplosion();
+		}
+
 	}
 
-	//add your functions
+		//add your functions
+	function drawSobereinstein(){
+	
+		fill("white");
+		text("Deliver the happiness to einstein tounge and click. Disclaimers: The following creation is fiction, and meant to be as a joke, Einstein did not create the atomic bomb.",20,20);
+	}
 
 
+	function drawTrippingeinstein(){
+
+		//direction state
+		if (direction == "up"){
+			moveY -=speed;
+		} else if (direction == "down"){
+			moveY+=speed;
+		} else if (direction == "left"){
+			moveX-=speed;
+		} else if (direction == "right"){
+			moveX+=speed;
+		}
+
+		//detect if the Atom goes off screen, and have it 
+		//come back in on the opposite side
+		if(moveX < 0){
+			moveX = windowWidth;
+		} else if(moveX > windowWidth){
+			moveX = 0;
+		} else if(moveY < 0){
+			moveY = windowHeight;
+		} else if (moveY > windowHeight){
+			moveY = 0;
+		}
+		//draw the atom
+		image(atom, moveX, moveY,atom.width/2, atom.height/2);
+
+		//background
+		blend(pattern, 0, 0, pattern.width, pattern.height, 0,0,  pattern.width,pattern.height, SOFT_LIGHT);
+
+		fill("white");
+		text("He Discovers e=Mc2! and Brownian motion. Now hit shift to see what the product of these discoveries are. P.S: You can move the Brownian motion element around using your arrow keys",20,20);
+
+		image(emc2,emc2Position+30, 100);
+
+		if (emc2Position > windowWidth){
+			emc2Position = 0;
+		}
+		else{
+			emc2Position+=7;
+		}
+		//change X or Y position depending on the 
+		
+	}
+	function drawExplosion (){
+
+		blend(explosion, 0,0, explosion.width, explosion.height,0,0, explosion.width/1.7, explosion.height/1.7,ADD)
+
+		//draw the bomb 
+		image(bomb, tabX, tabY, bomb.width/3, bomb.height/3);
+		imageMode(CENTER);
+
+		fill("white");
+		text("A monster is created! Don't do drugs kids! Hit shift again to restart the cycle.",100,500);
+
+		
+	}
+	function mousePressed(){
+		if (einsteinState==="sober"){
+			einsteinState="tripping";
+
+		} else if (einsteinState == "tripping"){
+			einsteinState = "sober";
+		}
+
+	}
+
+	function keyPressed() {
+
+		//check the arrow keys for changes in the direction
+  		if (keyCode === UP_ARROW) {
+   		 direction = "up";
+  		} else if (keyCode === DOWN_ARROW) {
+   		 direction = "down";
+ 		 } else if (keyCode === LEFT_ARROW){
+  		direction = "left";
+  		} else if (keyCode === RIGHT_ARROW){
+  		direction = "right";
+  		}
+
+  		//check the shift key to switch to sober state
+  		if(keyCode === SHIFT){
+  		if(einsteinState == "tripping"){
+  		einsteinState = "explosion";
+  		} else if (einsteinState=="explosion"){
+  		einsteinState = "sober";
+  	}
+ }
+}
 
 
 	</script>
